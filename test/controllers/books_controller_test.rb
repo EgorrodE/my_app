@@ -3,13 +3,18 @@ require 'test_helper'
 class BooksControllerTest < ActionController::TestCase
   setup do
     @book = books(:one)
+    @update = {
+    title: 'Lorem Ipsum',
+    content: 'one two three four five six seven eight nine ten eleven twelve',
+    image_url: 'lorem.jpg',
+    }
   end
-
   test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:books)
   end
+
 
   test "should get new" do
     get :new
@@ -18,11 +23,11 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should create book" do
     assert_difference('Book.count') do
-      post :create, book: { author_id: @book.author_id, content: @book.content, image_url: @book.image_url, title: @book.title }
+      post :create, book: @update
     end
-
     assert_redirected_to book_path(assigns(:book))
   end
+
 
   test "should show book" do
     get :show, id: @book
