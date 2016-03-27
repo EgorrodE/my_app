@@ -1,5 +1,5 @@
 class CatalogController < ApplicationController
   def index
-    @books = Book.order(:time_stamp)
+    @books = Book.order('created_at DESC').all
   end
 end

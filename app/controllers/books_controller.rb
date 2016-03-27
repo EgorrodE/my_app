@@ -59,3 +59,11 @@ class BooksController < ApplicationController
       params.require(:book).permit(:title, :content, :image_url, :author_id)
     end
 end
+
+def image_url
+  if @book.image_url.present?
+    image_tag @book.image_url :thumbnail
+  else
+    image_tag 'no_image.png'
+  end
+end

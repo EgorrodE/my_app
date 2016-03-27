@@ -1,15 +1,35 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ruby on Rails first app</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>ыаыв</title>
+  <%= stylesheet_link_tag 'application', media: 'all',
+                          'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+  </script>
+  <![endif]-->
 </head>
-<body class='<%= controller.controller_name %>'>
+<body >
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class=' container'>
+    <%= link_to "Typo", root_url, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home",   '#' %></li>
+        <li><%= link_to "My books",   '#' %></li>
+        <li><%= link_to "Log in", '#' %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<%= yield %>
-
+<div class="container <%= controller.controller_name %> main">
+  awdawd
+  <%= yield %>
+</div>
 </body>
 </html>
-
