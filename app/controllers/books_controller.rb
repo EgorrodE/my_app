@@ -17,6 +17,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.author_id = current_user.email
 
     respond_to do |format|
       if @book.save
@@ -56,14 +57,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :content, :image_url, :author_id)
+      params.require(:book).permit(:title, :content, :image_url)
     end
 end
 
-def image_url
-  if @book.image_url.present?
-    image_tag @book.image_url :thumbnail
-  else
-    image_tag 'no_image.png'
-  end
-end

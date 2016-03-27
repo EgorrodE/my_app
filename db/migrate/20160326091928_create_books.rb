@@ -5,7 +5,6 @@ class CreateBooks < ActiveRecord::Migration
       t.text :content
       t.string :image_url
       t.decimal :author_id
-
       t.timestamps null: true
     end
   end

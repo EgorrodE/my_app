@@ -9,7 +9,9 @@
             <div class="entry book_preview col-lg-3 col-md-3 col-sm-12" >
               <h3><%= book.title %></h3>
               <%= image_tag(book.image_url, class:'img-responsive img-thumbnail')%>
-              <%= sanitize(book.content) %>
+              <%= truncate(strip_tags(book.content),length: 300) %>
+              <br>
+              <%= link_to 'read more...'%>
 
             </div>
         <% end %>
