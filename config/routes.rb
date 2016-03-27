@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chapters
   get 'catalog/index'
 
   devise_for :admins
