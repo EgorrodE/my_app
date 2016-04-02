@@ -1,8 +1,8 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
+<strong>Title:</strong>
+<%= @book.title %>
 </p>
 <p>
   <strong>Author:</strong>
@@ -11,9 +11,12 @@
 
 <h3>Chapters:</h3>
 <ul>
-<% @book.chapters.each do |c| %>
-<li></li>
-<% end %>
+  <% @book.chapters.each do |c| %>
+      <div class="  col-lg-3 col-md-3 col-sm-12" >
+        <h3><%= c.title %></h3>
+        <%=raw c.text%>
+      </div>
+  <% end %>
 </ul>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
