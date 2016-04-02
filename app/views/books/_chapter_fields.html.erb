@@ -1,11 +1,18 @@
-<div class="nested-fields">
-  <div class="field">
-    <%= f.label :title %>
-    <br>
-    <%= f.text_field :title %>
+<div id= "<%=@count%>" class="tab-pane fade">
+  <div class="nested-fields">
+    <div class="field">
 
+      <%= f.label :title %>
+      <br>
+      <%= f.text_field :title %>
+      <br>
+      <br>
+      <%= f.label :text %>
+      <br>
+      <%= f.text_area :text %>
+      <%= link_to_remove_association "remove chapter", f %>
+    </div>
 
   </div>
 
-  <%= link_to_remove_association "remove chapter", f %>
 </div>
