@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
 
   has_many :books
-  has_many :chapters, through: :books
+  has_many :comments, as: :commentable
+  has_many :likes, as: :likable
+  has_many :positions, as: :positionable
+  has_many :rates, as: :rateble
+
 
 end

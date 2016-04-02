@@ -2,15 +2,11 @@
 <table>
   <% @books.each do |book| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td>
-          <%= image_tag(book.image_url, class: 'list_image') %>
-        </td>
+
         <td class="list_description">
 
           <dl>
             <dt><%= book.title %></dt>
-            <dd><%= truncate(strip_tags(book.content),
-                             length: 80) %></dd>
           </dl>
         </td>
         <td class="list_actions">
@@ -24,3 +20,4 @@
 </table>
 <br />
 <%= link_to 'New book', new_book_path %>
+

@@ -17,8 +17,8 @@
     <% @chapters.each do |chapter| %>
       <tr>
         <td><%= chapter.title %></td>
-        <td><%= chapter.content %></td>
-        <td><%= chapter.author_id %></td>
+
+        <td><%= chapter.text %></td>
         <td><%= chapter.book_id %></td>
         <td><%= link_to 'Show', chapter %></td>
         <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
