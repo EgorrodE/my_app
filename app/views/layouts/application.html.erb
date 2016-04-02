@@ -14,18 +14,11 @@
 <body >
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class=' container'>
-    <%= link_to "Typo", root_url, id: "logo" %>
-    <% if current_user %>
-        <div class='container' id="header_user_info">
-            <span>User:<%= current_user.email %></span>
-            <span>User id:<%= current_user.id %></span>
-        </div>
-    <%end%>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",  root_url %></li>
-          <% if current_user %>
-              <li><%= link_to "My books", books_path %></li>
+          <% if user_signed_in? %>
+              <li><%= link_to current_user.nickname, current_user_path(nickname: current_user.nickname) %></li>
               <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
           <% else %>

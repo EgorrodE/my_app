@@ -1,5 +1,5 @@
 <div id="chapters">
-<%= form_for @book do |f| %>
+<%= form_for [:user, @book] do |f| %>
     <div class="field">
       <%= f.label :title %>
       <br/>
@@ -14,7 +14,7 @@
             <li><a data-toggle="pill" href="#<%= @count %>" ><%= chapter.title %></a></li>
             <%@count+=1%>
           <%end %>
-          <li><%= link_to "+", add_chapter_url(@book), remote: true, data: { toggle: 'pill'} %></li>
+          <li><%= link_to "+", add_chapter_url(id: @book.id, user_id: current_user.id), remote: true, data: { toggle: 'pill'} %></li>
           </ul>
         <div class="tab-content">
           <% @count = 0 %>

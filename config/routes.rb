@@ -4,12 +4,21 @@ Rails.application.routes.draw do
   get 'catalog/index'
 
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: {sessions: "users/sessions", registrations: "users/registrations" },
+             path: "auth", path_names: { sign_in: 'login', sign_out: 'logout',
+                                         password: 'secret', confirmation: 'verification',
+                                         unlock: 'unblock', registration: 'register',
+                                         sign_up: 'signup' }
+  resources :users do
+    resources :books do
+      resources :chapters
+    end
+  end
   resources :books do
     resources :chapters
   end
 
-
+  get 'user/:nickname' => "users#show", as: :current_user
   get "book/:id/add" => "books#add_chapter", as: :add_chapter
   get "book/:id/chapter/:chapter_id/delete" => "books#delete_chapter", as: :delete_chapter
   # The priority is based upon order of creation: first created -> highest priority.
