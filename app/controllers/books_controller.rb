@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :add_chapter, :delete_chapter]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :new]
 
   def index
@@ -28,7 +28,6 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def create
@@ -43,6 +42,14 @@ class BooksController < ApplicationController
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_chapter
+    @book.chapters.push Chapter.create(book_id: @book.id, title: "No title")
+  end
+
+  def delete_chapter
+    @book.chapters.find(params[:chapter_id]).destroy
   end
 
   def update

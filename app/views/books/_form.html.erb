@@ -1,3 +1,4 @@
+<div id="chapters">
 <%= form_for @book do |f| %>
     <div class="field">
       <%= f.label :title %>
@@ -6,24 +7,23 @@
     </div>
 
     <h3>Chapters</h3>
-    <ul class="nav nav-pills">
-      <% @count = 0 %>
-      <% @book.chapters.each do |chapter| %>
-        <li><a data-toggle="pill" href="#<%= @count %>"><%= chapter.title %></a></li>
-        <%@count+=1%>
-      <%end %>
 
-      </ul>
-    <div class="tab-content">
-      <% @count = 0 %>
-      <%= f.fields_for :chapters do |chapters| %>
-          <%= render 'chapter_fields', f: chapters %>
-          <% @count += 1%>
-      <% end %>
+        <ul class="nav nav-pills">
+          <% @count = 0 %>
+          <% @book.chapters.each do |chapter| %>
+            <li><a data-toggle="pill" href="#<%= @count %>" ><%= chapter.title %></a></li>
+            <%@count+=1%>
+          <%end %>
+          <li><%= link_to "+", add_chapter_url(@book), remote: true, data: { toggle: 'pill'} %></li>
+          </ul>
+        <div class="tab-content">
+          <% @count = 0 %>
+          <%= f.fields_for :chapters do |chapters| %>
+              <%= render 'chapter_fields', f: chapters %>
+              <% @count += 1%>
+          <% end %>
+        </div>
 
-    </div>
-    <div class="links">
-      <%= link_to_add_association 'add task', f, :chapters %>
-    </div>
     <%= f.submit %>
 <% end %>
+</div>

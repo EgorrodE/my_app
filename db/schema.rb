@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160326131839) do
     t.integer  "book_id",    limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "project_id", limit: 4
   end
 
   add_index "chapters", ["book_id"], name: "index_chapters_on_book_id", using: :btree

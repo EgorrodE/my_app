@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :chapters
   end
 
+
+  get "book/:id/add" => "books#add_chapter", as: :add_chapter
+  get "book/:id/chapter/:chapter_id/delete" => "books#delete_chapter", as: :delete_chapter
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
