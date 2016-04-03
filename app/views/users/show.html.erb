@@ -26,12 +26,10 @@
         <td><%= rating book %></td>
         <!--<td><%= book.tags %></td>-->
         <td><%= book.category %></td>
-        <td><%= email book %></td>
-        <td><%= link_to 'Show', book %></td>
-        <%if user? book%>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= nickname book %></td>
+        <td><%= link_to 'Show', user_book_path(user_id: current_user, id: book.id) %></td>
+        <td><%= link_to 'Edit', edit_user_book_path(user_id: current_user.id, id: book.id) %></td>
+        <td><%= link_to 'Destroy', user_book_path(user_id: book.user_id, id: book.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>

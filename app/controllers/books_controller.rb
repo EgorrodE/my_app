@@ -20,11 +20,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book =  Book.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @book }
-    end
+    @book =  Book.create(user_id: current_user.id, title: "No title")
   end
 
   def edit
@@ -57,7 +53,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.update_attributes(book_params)
-        format.html { redirect_to(@book, :notice => 'Book was successfully updated.') }
+        format.html { redirect_to @book, :notice => 'Book was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -72,22 +68,20 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    respond_to do |format|
-      format.html { redirect_to books_path, notice: 'Book was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @books = Book.all
+    redirect_to books_url, notice: 'Book was successfully destroyed.'
   end
 
   private
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:book_id] || params[:id])
   end
 
-    def book_params
-      params.require(:book).permit(
-          :title, :user_id, :category,:tags,
-          chapters_attributes: [:id, :text, :title, :done, :_destroy])
-    end
+  def book_params
+    params.require(:book).permit(
+        :title, :user_id, :category,:tags,
+        chapters_attributes: [:id, :text, :title, :done, :_destroy])
+  end
 end
 

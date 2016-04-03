@@ -6,7 +6,7 @@
 <div class='container'>
       <div class='row'>
         <% @books.each do |book| %>
-            <%= link_to book_path(book) do %>
+            <%= link_to user_book_path(user_id: book.user_id, id: book.id) do %>
             <div class="entry book_preview col-lg-3 col-md-3 col-sm-12" >
               <h3><%= book.title %></h3>
               <% end %>

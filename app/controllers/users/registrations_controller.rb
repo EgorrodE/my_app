@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_sign_up_params, only: [:create]
+  before_filter :configure_sign_up_params, only: [:create, :edit, :update]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -14,7 +14,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    super
+    super do |resource|
+    end
   end
 
   # PUT /resource

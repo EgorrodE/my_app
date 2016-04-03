@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :user_pages
-  resources :chapters
   get 'catalog/index'
 
   devise_for :admins
@@ -14,13 +12,15 @@ Rails.application.routes.draw do
       resources :chapters
     end
   end
+
   resources :books do
     resources :chapters
   end
 
-  get 'user/:nickname' => "users#show", as: :current_user
-  get "book/:id/add" => "books#add_chapter", as: :add_chapter
-  get "book/:id/chapter/:chapter_id/delete" => "books#delete_chapter", as: :delete_chapter
+  get 'home' => "catalog#index", as: :home
+  get 'user/:user_id' => "users#show", as: :current_user
+  get "user/:user_id/books/:book_id/add" => "books#add_chapter", as: :add_chapter
+  get "user/:user_id/book/:book_id/chapter/:chapter_id/delete" => "books#delete_chapter", as: :delete_chapter
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -11,7 +11,7 @@
       <br>
       <%= f.text_area :text, :class => "full-width-input" %>
       <br>
-      <%= link_to "delete chapter", delete_chapter_path(id: @book.id, chapter_id: @book.chapters[@count].id), remote: true%>
+      <%= link_to "delete chapter", delete_chapter_path(book_id: @book.id, chapter_id: @book.chapters[@count].id), remote: true%>
     </div>
 
   </div>
