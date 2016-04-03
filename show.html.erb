@@ -1,0 +1,24 @@
+
+<p id="notice"><%= notice %></p>
+
+<strong>Title:</strong>
+<%= @book.title %>
+</p>
+<p>
+  <strong>Author:</strong>
+  <%= @book.user_id %>
+</p>
+
+<h3>Chapters:</h3>
+<ul>
+  <% @book.chapters.each do |c| %>
+      <div class="  col-lg-3 col-md-3 col-sm-12" >
+        <h3><%= c.title %></h3>
+        <%=raw c.text%>
+      </div>
+  <% end %>
+</ul>
+<%if current_user %>
+  <%= link_to 'Edit', edit_user_book_path(user_id: current_user.id, id: @book) %> |
+<% end %>
+<%= link_to 'Back', user_path(@book.user_id) %>
