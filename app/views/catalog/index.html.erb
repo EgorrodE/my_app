@@ -3,20 +3,21 @@
 <% end %>
 
 <h1>Last updated books:</h1>
-<div class='container'>
+<div class='row'>
+  <% @chapters.each do |chapter| %>
+      <%= link_to user_book_path(user_id: chapter.book.user_id, id: chapter.book.id) do %>
+          <%if false%>
+              <div class="chapter-preview col-lg-4 col-md-4 col-sm-12" >
+                <h3><%= chapter.book.title %></h3>
+                <h4><%= chapter.title %></h4>
+                <h5>Author: <%= nickname chapter.book %></h5>
+                <aricle><%= %></aricle>
+              </div>
+          <% end %>
+          <%= render 'books/chapter_preview', f: chapter %>
 
-  <div class='row'>
-    <% @chapters.each do |chapter| %>
-        <%= link_to user_book_path(user_id: chapter.book.user_id, id: chapter.book.id) do %>
-            <div class="entry book_preview col-lg-4 col-md-4 col-sm-12" >
-              <h3><%= chapter.book.title %></h3>
-              <h4><%= chapter.title %></h4>
-              <h5>Author: <%= nickname chapter.book %></h5>
 
-        <% end %>
+      <% end %>
+  <% end %>
 
-
-        </div>
-    <% end %>
-  </div>
 </div>
