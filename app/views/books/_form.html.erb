@@ -1,29 +1,32 @@
 <div id="chapters">
-<%= form_for(@book) do |f| %>
-    <div class="field">
-      <%= f.label :title %>
-      <br/>
-      <%= f.text_field :title %>
-    </div>
-
-    <h3>Chapters</h3>
-
-        <ul class="nav nav-pills">
-          <% @count = 0 %>
-          <% @book.chapters.each do |chapter| %>
-            <li><a data-toggle="pill" href="#<%= @count %>" ><%= chapter.title %></a></li>
-            <%@count+=1%>
-          <%end %>
-          <li><%= link_to "+", add_chapter_url(user_id: @book.user_id, book_id: @book.id), remote: true, data: { toggle: 'pill'} %></li>
-          </ul>
-        <div class="tab-content">
-          <% @count = 0 %>
-          <%= f.fields_for :chapters do |chapters| %>
-              <%= render 'chapter_fields', f: chapters %>
-              <% @count += 1%>
-          <% end %>
+    <% if false#@book.nil? %>
+        <%@book = Book.create(title: "No title")%>
+    <% end%>
+    <%= form_for [current_user, @book] do |f| %>
+        <div class="field">
+          <%= f.label :title %>
+          <br/>
+          <%= f.text_field :title %>
         </div>
 
-    <%= f.submit %>
-<% end %>
+        <h3>Chapters</h3>
+
+            <ul class="nav nav-pills">
+              <% @count = 0 %>
+              <% @book.chapters.each do |chapter| %>
+                <li><a data-toggle="pill" href="#<%= @count %>" ><%= chapter.title %></a></li>
+                <%@count+=1%>
+              <%end %>
+              <li><%= link_to "+", add_chapter_path(book_id: @book.id), remote: true, data: { toggle: 'pill'} %></li>
+              </ul>
+            <div class="tab-content">
+              <% @count = 0 %>
+              <%= f.fields_for :chapters do |chapters| %>
+                  <%= render 'chapter_fields', f: chapters %>
+                  <% @count += 1%>
+              <% end %>
+            </div>
+
+        <%= f.submit %>
+    <% end %>
 </div>

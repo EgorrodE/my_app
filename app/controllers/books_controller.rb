@@ -27,7 +27,7 @@ class BooksController < ApplicationController
   end
 
   def create
-  @book = Book.new(book_params)
+  @book = Book.update(book_params)
   @book.user_id = current_user.id
     respond_to do |format|
       if @book.save
@@ -62,6 +62,14 @@ class BooksController < ApplicationController
     end
   end
 
+  def rate
+    mark = params[:rate]
+    if(rate > 0 && rate < 6)
+      user = User.find_by_id(params[:user_id])
+      book = Book.find_by_id(params[:book_id])
+      rate = Rate.where(user_id: user.id, book_id: book.id).first
+    end
+  end
 
 
 

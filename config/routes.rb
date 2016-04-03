@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'catalog/index'
+  post '/rate' => 'rater#create', :as => 'rate'
 
   devise_for :admins
   devise_for :users, controllers: {sessions: "users/sessions", registrations: "users/registrations" },
@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   end
 
   get 'home' => "catalog#index", as: :home
-  get 'user/:user_id' => "users#show", as: :current_user
+  get 'user/:user_id' => "users#show", as: :user_page
   get "user/:user_id/books/:book_id/add" => "books#add_chapter", as: :add_chapter
   get "user/:user_id/book/:book_id/chapter/:chapter_id/delete" => "books#delete_chapter", as: :delete_chapter
+  # get "rate/:user_id/:book_id" => "books#rate", as: :rate
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

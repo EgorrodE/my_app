@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
-  validates :title, presence: true,  uniqueness: true
+  ratyrate_rateable "lol"
+  validates :title, presence: true
 
   # validates :image_url, format: {
   #              with: %r{\.(gif|jpg|png)\Z}i,
@@ -13,7 +14,6 @@ class Book < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
   has_many :positions, as: :positionable
   has_many :comments, as: :commentable
-  has_many :rates, as: :ratable
   has_many :tags
   accepts_nested_attributes_for :chapters, reject_if: :all_blank, allow_destroy: true
 

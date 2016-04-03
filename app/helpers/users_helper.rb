@@ -1,6 +1,6 @@
 module UsersHelper
   def first_name
-    name = current_user.first_name
+    name = @user.first_name
     if name.nil?
       "No name"
     else
@@ -8,7 +8,7 @@ module UsersHelper
     end
   end
   def last_name
-    name = current_user.last_name
+    name = @user.last_name
     if name.nil?
       "No name"
     else

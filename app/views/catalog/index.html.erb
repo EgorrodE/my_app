@@ -2,17 +2,21 @@
     <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>BOOKS CATALOG</h1>
+<h1>Last updated books:</h1>
 <div class='container'>
-      <div class='row'>
-        <% @books.each do |book| %>
-            <%= link_to user_book_path(user_id: book.user_id, id: book.id) do %>
-            <div class="entry book_preview col-lg-3 col-md-3 col-sm-12" >
-              <h3><%= book.title %></h3>
-              <% end %>
 
+  <div class='row'>
+    <% @chapters.each do |chapter| %>
+        <%= link_to user_book_path(user_id: chapter.book.user_id, id: chapter.book.id) do %>
+            <div class="entry book_preview col-lg-4 col-md-4 col-sm-12" >
+              <h3><%= chapter.book.title %></h3>
+              <h4><%= chapter.title %></h4>
+              <h5>Author: <%= nickname chapter.book %></h5>
 
-            </div>
         <% end %>
-      </div>
+
+
+        </div>
+    <% end %>
+  </div>
 </div>
